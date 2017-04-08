@@ -266,17 +266,18 @@ Line 9: else if ( __1__ ) then
 	 you would expect, but I\'ve tested it and this one works.)
 Line 10:   echo "You cannot pick that up."
 Line 11:else
-         At this point we know that the player has asked to pick up a valid
+         
+		 
+Lines 12-??: 
+		At this point we know that the player has asked to pick up a valid
 	 object that really is in the room. There are just a few things to
 	 deal with (in any order):
-	   Lines 12-??: Move the file.
-	                If it is life/preserver or floppy/disk, then also move
-			  the corresponding paired file.
-			If it is the towel, then set the same variable that
-			  line 3 sets.
-                        Print "You pick up the ____"
-			  Where ____ is the file name.
-Line ??+1:endif
+		1) Move the file.
+		2) If it is life/preserver or floppy/disk, then also move the corresponding paired file.
+		3) If it is the towel, then set the same variable that line 3 sets.
+        4) Print "You pick up the ____"
+				Where ____ is the file name.
+Line ??+1: endif
 
 Line ??+2: empty line
 
@@ -286,18 +287,20 @@ Line ??+4-end: At this point, we know that we have picked up the towel, but we
                don't know if this is the first time that we have done so.
 
 	       When we pick up the towel the first time, 3 things must happen:
-               1) The ".d" subdirectory is renamed to "d".
-	       2) You print "Taking the towel reveals a hole in the floor."
-	       3) The ".hiddenhole" file is renamed to "_hiddenhole"
-                  I have not previously mentioned to you about this file. As
+          
+			1) The ".d" subdirectory is renamed to "d".
+			2) You print "Taking the towel reveals a hole in the floor."
+			3) The ".hiddenhole" file is renamed to "_hiddenhole"
+          
+		  I have not previously mentioned to you about this file. As
 		  you can see, it is a hidden file in the Red Room directory.
 		  Its contents are:
 		    % cat ~/pa3/start/e/e/n/d/d/sw/w/d/e/.hiddenhole
-                    a hole in the floor
+            a hole in the floor
 		    I don't know what that is.
-                    %
+            %
 
-                  Here, we see that the file is designed to work with the "l"
+			Here, we see that the file is designed to work with the "l"
 		  command. _hiddenhole doesn't match to ??[^midxburn]*, so its
 		  not an object that can be picked up. But it does display.
 		  This is important because of how the game works. If you look

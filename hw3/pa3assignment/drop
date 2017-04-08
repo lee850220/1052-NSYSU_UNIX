@@ -1,13 +1,13 @@
 #!/bin/tcsh
 if ( $1 == "disk" || $1 == "floppy" ) then
-	if ( -e ~/items/disk || -e ~/items/floppy ) then
+	if ( -e ~/items/$1 ) then
 	    mv ~/items/disk ~/items/floppy . >& ~/X
 	    echo "Dropped."
     else
 		echo "You are not holding that."
     endif
 else if ( $1 == "life" || $1 == "preserver" ) then
-	if ( -e ~/items/life || -e ~/items/preserver ) then
+	if ( -e ~/items/$1 ) then
 	    mv ~/items/life ~/items/preserver . >& ~/X
 	    echo "Dropped."
     else
