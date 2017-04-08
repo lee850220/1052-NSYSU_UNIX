@@ -1,0 +1,9 @@
+#!/bin/tcsh
+if ($1 == all) then
+    # if the towel is present in the room, set a variable.
+    mv ??[^midxburn]* ~/pa3/items >& ~/X && echo "You pick things up." ||\
+    ( ls ??[xumbird]* >& ~/X && echo "You cannot pick that up." ) || \
+    echo "There is nothing here to get."
+else if ( ! -e $1 ) then
+    echo "You cannot see that here."
+else if ( __1__ ) then

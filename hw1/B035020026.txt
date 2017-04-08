@@ -1,0 +1,2 @@
+alias m='mkdir'
+alias makedirs='cd ~/hw1;rm -rfv hw;m hw;cd hw;m e;cd e;m s;m n;cd n;m w;m d;cd d;m s;m d;cd d;m sw;cd sw;m e;cd e;m u;cd ..;m sw;m w;cd w;m d;cd d;m e;cd e;m n;cd n;m w;cd ..;m d;cd d;m s;cd s;m s;cd s;m s;cd ../..;m n;cd n;m n;cd n;m u;cd u;m u;cd u;m ne;cd ne;m ne;cd ~/hw1'
