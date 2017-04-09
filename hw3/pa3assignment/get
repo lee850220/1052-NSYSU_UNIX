@@ -1,6 +1,6 @@
 #!/bin/tcsh
 if ($1 == all) then
-    if ( -e towel ) set T = 1
+    if ( -e towel ) set T
     mv ??[^midxburn]* ~/pa3/items >& ~/X && echo "You pick things up." ||\
     ( ls ??[xumbird]* >& ~/X && echo "You cannot pick that up." ) || \
     echo "There is nothing here to get."
@@ -10,26 +10,26 @@ else if ( $1 =~ ??[xumbird]* ) then
     echo "You cannot pick that up."
 else
     if ( $1 == "disk" || $1 == "floppy" ) then
-        if ( -e ~/items/$1 ) then
-            mv disk floppy ~/items/ >& ~/X
-            echo "You pick up the disk and the floppy"
-        endif
+        mv disk floppy ~/pa3/items/ >& ~/X
+        echo "You pick up the disk and the floppy"
     else if ( $1 == "life" || $1 == "preserver" ) then
-        if ( -e ~/items/$1 ) then
-            mv life preserver ~/items/ >& ~/X
-            echo "You pick up the preserver and the life"
-        endif
+        mv life preserver ~/pa3/items/ >& ~/X
+        echo "You pick up the preserver and the life"
     else if ( $1 == "towel" ) then
-        mv towel ~/items/ >& ~/X
+        mv towel ~/pa3/items/ >& ~/X
         echo "You pick up the $1"
-        set T = 1
+        set T
     else
-        mv $1 ~/items/ >& ~/X
+        mv $1 ~/pa3/items/ >& ~/X
         echo "You pick up the $1"
     endif
 endif
 
-if ( $T ) then
-    mv .d d 2> ~/X
-    echo "Taking the towel reveals a hole in the floor."
-    mv .hiddenhole _hiddenhole 2> ~/X
+if ( $?T ) then
+    if ( ! -e T ) then
+        mv .d d 2> ~/X
+        echo "Taking the towel reveals a hole in the floor."
+        mv .hiddenhole _hiddenhole 2> ~/X
+        touch T
+    endif
+endif
