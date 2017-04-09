@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/usr/bin/tcsh
 if ( -e ~/pa3/items/$1 ) then
 	if ( $1 == "disk" || $1 == "floppy" ) then
 		mv ~/pa3/items/disk ~/pa3/items/floppy . >& ~/X

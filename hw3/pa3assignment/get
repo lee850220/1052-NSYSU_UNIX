@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/usr/bin/tcsh
 if ($1 == all) then
     if ( -e towel ) set T
     mv ??[^midxburn]* ~/pa3/items >& ~/X && echo "You pick things up." ||\
