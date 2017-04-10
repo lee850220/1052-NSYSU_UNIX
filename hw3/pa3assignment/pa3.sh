@@ -66,5 +66,5 @@ alias quit='score;cd ~;unalias l look BacktrackTest nogo n e w s ne nw se sw i\
 
 # The next 2 commands are the only parts that you need to modify in this file.
 # See the README file for details on what these commands are meant to do.
-alias score='echo `ls ~/treasures/??[alt]* 2> ~/X | wc -l 2> ~/X | xargs expr 10 \* ` points' 
-alias flush='ls urinal >& ~/X || echo "There being nothing to flush." ; ls urinal >& ~/X && (mv ~/holdtreasure/* ~/treasures/ ; echo "Woosh\!\!" ; echo ; score)' 
+alias score='echo You have scored `ls ~/pa3/treasures/??[alt]* 2> ~/X | wc -l 2> ~/X | xargs expr 10 \* ` points out of 90 possible points.' 
+alias flush='ls urinal >& ~/X || echo "There being nothing to flush." ; ls urinal >& ~/X && (mv ~/pa3/holdtreasure/* ~/pa3/treasures >& ~/X ; echo Whoooosh\!\! ; echo ; score)' 

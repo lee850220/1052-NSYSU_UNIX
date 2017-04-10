@@ -1,1 +1,13 @@
 #!/usr/bin/tcsh
+if ( -d w ) then
+    if ( x`ls -al | grep -w w | /usr/bin/cut -c 4 -` == "x-" ) then
+        echo "You must type a 3 digit combination code to enter this room."
+        echo -n "Enter it here: "
+        set Code = $<
+        if ( $Code == "869" ) then
+            chmod u+x w
+        else
+            echo "Sorry, that combination is incorrect."
+        endif
+    endif
+endif

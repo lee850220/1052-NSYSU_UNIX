@@ -11,25 +11,22 @@ else if ( $1 =~ ??[xumbird]* ) then
 else
     if ( $1 == "disk" || $1 == "floppy" ) then
         mv disk floppy ~/pa3/items/ >& ~/X
-        echo "You pick up the disk and the floppy"
     else if ( $1 == "life" || $1 == "preserver" ) then
         mv life preserver ~/pa3/items/ >& ~/X
-        echo "You pick up the preserver and the life"
     else if ( $1 == "towel" ) then
         mv towel ~/pa3/items/ >& ~/X
-        echo "You pick up the $1"
         set T
     else
         mv $1 ~/pa3/items/ >& ~/X
-        echo "You pick up the $1"
     endif
+    echo "You pick up the $1"
 endif
 
 if ( $?T ) then
-    if ( ! -e T ) then
-        mv .d d 2> ~/X
+    if ( ! -e Tex ) then
+        mv .d d >& ~/X
         echo "Taking the towel reveals a hole in the floor."
-        mv .hiddenhole _hiddenhole 2> ~/X
-        touch T
+        mv .hiddenhole _hiddenhole >& ~/X
+        cat _hiddenhole > Tex
     endif
 endif

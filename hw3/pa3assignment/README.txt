@@ -185,23 +185,15 @@ vvvvvvv
 pa3.sh:
 ^^^^^^^
 Line 69: alias score='echo __________________'
-         Your solution here will provide the proper information to the echo
-	 command. You won\'t use ";" or "&&" or "||".
+         Your solution here will provide the proper information to the echo command. You won\'t use ";" or "&&" or "||".
 
-         So, what is the score? There are 4 treasures: gold, platinum, diamond,
-	 and bracelet. The player can flush other items and they will appear in
-	 the treasure room (if we played the rest of the game), but those other
-	 items don\'t give points. Each treasure is worth 10 points.
+         So, what is the score? There are 4 treasures: gold, platinum, diamond, and bracelet. The player can flush other items and they will appear in the treasure room (if we played the rest of the game), but those other items don\'t give points. Each treasure is worth 10 points.
 
-         How to do it? Well, we need a way to count how many treasures are in
-	 the treasure room (ie, checking that directory for those 4 files) and
-	 then to multiply that by 10. (Note: you can\'t just stick a "0" after
-	 the number, because no treasure -> "0 points", not "00 points".)
+         How to do it? Well, we need a way to count how many treasures are in the treasure room (ie, checking that directory for those 4 files) and then to multiply that by 10. (Note: you can\'t just stick a "0" after the number, because no treasure -> "0 points", not "00 points".)
 	 
 Line 70: alias flush='__1__||__2__; __3__ && (__4__)'
          __1__: Checks to see if you are in the room with the urinal.
-		 __2__: Prints a message about there being nothing to flush (because
-	        you aren\'t in the room with the urinal).
+		 __2__: Prints a message about there being nothing to flush (because you aren\'t in the room with the urinal).
          __3__: Checks to see if you are in the room with the urinal.
 		 __4__: This is several commands.
 	        It moves everything from the holdtreasure directory.
@@ -398,8 +390,7 @@ trydoor:
 Line 1: #!/usr/bin/tcsh
 
 Line 2: If there is a subdirectory named "w", then
-
-        Line 3: If that subdirectory does not have permissions for you to
+	Line 3: If that subdirectory does not have permissions for you to
 	        enter, then
 		Here, there are two ways that you could test. One would be to
 		just try to see the w/cable file. But I won't let you do it
@@ -416,11 +407,11 @@ Line 2: If there is a subdirectory named "w", then
 			problem described in slides 1-7 of Lecture #5. So you
                         need to use the technique described in those slides.
 
-                Line 4: Inform the player that a 3 digit code is required.
-		Line 5: Prints "Enter it here: " and doesn't print a newline.
-		Line 6: Read a keyboard input.
-		          Line 7: If the entered code was 869, then 
-			            Line 8: make the w directory executable.
+	Line 4: Inform the player that a 3 digit code is required.
+	Line 5: Prints "Enter it here: " and doesn't print a newline.
+	Line 6: Read a keyboard input.
+	Line 7: If the entered code was 869, then 
+		Line 8: make the w directory executable.
 
 Lines 9-13:
       else
@@ -437,76 +428,70 @@ reset:
 This script is longer. It needs to pretend that you are using an old PC.
 To understand its function, read 280-297 & 322-386 of the walkthrough file.
 
-One comment: Those old PCs were slow. It would take about 2 seconds to read
-             the disk and to respond to a command. The game includes this
-	     feature. If you look closely at the game, it has a delay on this
-	     part. We also will have the same delay. We do this by using the
-             sleep command with a "2" argument (ie, sleep for 2 seconds).
-	     But, sleep is an alias in the game, so the full path to the UNIX
-	     sleep command will be needed.
+One comment: Those old PCs were slow. It would take about 2 seconds to read the disk and to respond to a command. The game includes this feature. If you look closely at the game, it has a delay on this part. We also will have the same delay. We do this by using the sleep command with a "2" argument (ie, sleep for 2 seconds).
+But, sleep is an alias in the game, so the full path to the UNIX sleep command will be needed.
 
 Line 1: #!/usr/bin/tcsh
 Line 2: If you are not in the room with the PC, then
-          Line 3: echo That operation is not applicable here.
+    Line 3: echo That operation is not applicable here.
 Line 4: If the ".floppy" file isn't present (because you didn't "put" it), then
-          Line 5: Sleep for 2 seconds.
-          Line 6: Print "Boot sector not found".
+    Line 5: Sleep for 2 seconds.
+    Line 6: Print "Boot sector not found".
 Line 7: else
-          Line 8: Sleep for 2 seconds.
-          Line 9: echo Current time is `date | __1__`
-	          Here, the date command prints the date and time. Since I
-		  didn't teach this command, I'm just giving it to you here.
-		  The only thing that you need to know about date is that it
-		  prints a variety of things, but the SIXTH thing that it
-		  prints is the current time. So we need to just print that
-		  6th field.
-          Line 10: Prints "Enter new time:" without going to the next line.
-          Line 11: Read keyboard input (but we'll never use the entered value.)
-          Lines 12-39: an infinite while loop.
-                Line 13: Print the "A> " prompt
-                Line 14: Read a keyboard input. BUT, the input can have spaces
-		         so you will need to use double quotes to read the
-			 whole string as one value.
-                Line 15: Update the variable from line 14 to capitalize every
-		         letter (because those old PCs weren't case-sensitive.)
-                Line 16: Sleep for 2 seconds.
-                Lines 17-38: A switch statement based on the keyboard input
-		             from lines 14&15       
-                    Lines 18-20: These lines deal with the DIR dos command.
-		                 ("DIR" in dos is like "ls" in UNIX.)
-                                 I didn't want to make you type out the
-				 contents of the floppy, so I have provided
-				 you with a hidden file ".dir" in this room.
-				 So all that you have to do is cat that file.
-                    Lines 21-32: These lines deal with the TYPE dos command.
-		                 ("TYPE" in dos is like "cat" in UNIX.)
-				 
-				 It uses a switch command. For this command,
-				 there is a technical difficulty. suppose the
-				 player had typed "type xyz" on line 14,
-				 then after line 15, we would have "TYPE XYZ".
-				 Now, for this switch statement, we want to
-				 look at just the typed file name (XYZ in this
-				 case). So, how to take a string with spaces
-				 and just get the second word in the string?
-				 Answer: treat it like an array.
-				 
-                                 In this switch statement, there are 3 cases:
-				  1 You tried to print COMMAND.COM
-				    So: It says "Cannot type binary files"
-				  2 You tried to print FOO.TXT
-				    So: It says "\nThe combination is 869."
-				  3 You tried to print anything else
-				    So: It says "File not found - ____"
-				        Here, fill the blank with the file name
-                    Lines 33-35: These lines deal with the EXIT command.
-		    	  	 This is what the player types when they want
-				 to stop using the PC. You need to print an
-				 appropriate message.
-				 You also need to leave the script, so that the
-				 infinite loop begun on line 12 doesn't go on
-				 infinitely.
-                    Lines 36-37: Otherwise, say "Bad command or file name"
+	Line 8: Sleep for 2 seconds.
+	Line 9: echo Current time is `date | __1__`
+		Here, the date command prints the date and time. Since I
+	didn't teach this command, I'm just giving it to you here.
+	The only thing that you need to know about date is that it
+	prints a variety of things, but the SIXTH thing that it
+	prints is the current time. So we need to just print that
+	6th field.
+	Line 10: Prints "Enter new time:" without going to the next line.
+	Line 11: Read keyboard input (but we'll never use the entered value.)
+	Lines 12-39: an infinite while loop.
+		Line 13: Print the "A> " prompt
+		Line 14: Read a keyboard input. BUT, the input can have spaces
+			so you will need to use double quotes to read the
+		whole string as one value.
+		Line 15: Update the variable from line 14 to capitalize every
+			letter (because those old PCs weren't case-sensitive.)
+		Line 16: Sleep for 2 seconds.
+		Lines 17-38: A switch statement based on the keyboard input
+				from lines 14&15       
+			Lines 18-20: These lines deal with the DIR dos command.
+					("DIR" in dos is like "ls" in UNIX.)
+				I didn't want to make you type out the
+				contents of the floppy, so I have provided
+				you with a hidden file ".dir" in this room.
+				So all that you have to do is cat that file.
+			Lines 21-32: These lines deal with the TYPE dos command.
+					("TYPE" in dos is like "cat" in UNIX.)			
+				It uses a switch command. For this command,
+				there is a technical difficulty. suppose the
+				player had typed "type xyz" on line 14,
+				then after line 15, we would have "TYPE XYZ".
+				Now, for this switch statement, we want to
+				look at just the typed file name (XYZ in this
+				case). So, how to take a string with spaces
+				and just get the second word in the string?
+				Answer: treat it like an array.
+			
+			In this switch statement, there are 3 cases:
+				1 You tried to print COMMAND.COM
+				So: It says "Cannot type binary files"
+				2 You tried to print FOO.TXT
+				So: It says "\nThe combination is 869."
+				3 You tried to print anything else
+				So: It says "File not found - ____"
+				Here, fill the blank with the file name
+			Lines 33-35: These lines deal with the EXIT command.
+				This is what the player types when they want
+			to stop using the PC. You need to print an
+			appropriate message.
+			You also need to leave the script, so that the
+			infinite loop begun on line 12 doesn't go on
+			infinitely.
+			Lines 36-37: Otherwise, say "Bad command or file name"
 
 Line 38:       endsw
 Line 39:    end
@@ -563,8 +548,7 @@ Lines 13-20: A switch statement using the 3rd parameter.
              "computer" all to "PC". In other words, if the player typed "put
 	     disk in drive" line 10 would turn it into "put floppy in drive" 
              and then lines 13-20 would turn it into "put floppy in PC".
-             Note: There is a warning on slide 46 of Lecture 4, regarding case
-                   statements that spill into each other.
+             Note: There is a warning on slide 46 of Lecture 4, regarding case statements that spill into each other.
 
 Line 21: empty line
 
@@ -597,9 +581,7 @@ Line 44:     endif
 
 Line 45:else
 
-Line 46-47: At this point, we know that the player is trying to put something
-	    into an object that is present, but that object is not something
-	    that it is legal to put things into. So print:
+Line 46-47: At this point, we know that the player is trying to put something into an object that is present, but that object is not something that it is legal to put things into. So print:
 I don't know how to combine those objects.  Perhaps you should
 just try dropping it.
 
