@@ -1,0 +1,14 @@
+#!/usr/bin/tcsh
+if ( -e ~/pa3/items/$1 ) then
+	if ( $1 == "disk" || $1 == "floppy" ) then
+		mv ~/pa3/items/disk ~/pa3/items/floppy . >& ~/X
+	else if ( $1 == "life" || $1 == "preserver" ) then
+		mv ~/pa3/items/life ~/pa3/items/preserver . >& ~/X
+	else
+		mv ~/pa3/items/$1 . >& ~/X
+	endif
+	echo "Dropped."
+else
+	echo "You are not holding that."
+endif
+
