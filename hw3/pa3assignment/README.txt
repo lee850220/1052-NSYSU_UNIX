@@ -373,15 +373,16 @@ cut:
 ^^^^
 Line 1: #!/usr/bin/tcsh
 Line 2: If you don't have the axe, then
-          Line 3: You print: "You have nothing with which to break things."
+	Line 3: You print: "You have nothing with which to break things."
 Line 4: If no parameters were sent into this script, then
-          Line 5: You print: "You must supply an object."
+    Line 5: You print: "You must supply an object."
 Line 6: If the 1st parameter isn't a file in items or your current directory
-          Line 7: You print: "I don't see that here."
+	Line 7: You print: "I don't see that here."
 Line 8: If the object isn't the cable, then
-          Line 9: You print: Your axe shatters into a million pieces.
-	  Line 10:You remove the axe from you items.
-Lines 11-17: otherwise, you print the following, with lines 12-17:
+	Line 9: You print: Your axe shatters into a million pieces.
+	Line 10:You remove the axe from you items.
+Lines 11-17: otherwise, you print the following,
+	with lines 12-17:
       As you break the ethernet cable, everything starts to blur.  You collapse
       for a moment, then straighten yourself up.
 
